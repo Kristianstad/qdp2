@@ -1,0 +1,24 @@
+-- DROP SCHEMA qdp2 ;
+
+DROP TABLE qdp2.farg;
+DROP TABLE qdp2.kodlista;
+DROP TABLE qdp2.referens;
+DROP TABLE qdp2.plandokumentation;
+DROP TABLE qdp2.underlag;
+DROP TABLE qdp2.planbeskrivning;
+DROP TABLE qdp2.beslutshandling;
+DROP TABLE qdp2.beslut;
+DROP TABLE qdp2.dokref;
+DROP TABLE qdp2.lagesbestamningsmetod;
+DROP TABLE qdp2.kvalitet;
+DROP TABLE qdp2.variabel;
+DROP TABLE qdp2.egen_best;
+DROP TABLE qdp2.anv_best;
+DROP TABLE qdp2.egenlin;
+DROP TABLE qdp2.egenpkt;
+DROP TABLE qdp2.omr;
+DROP TABLE qdp2.motiv;
+DROP TABLE qdp2.best;
+DROP TABLE qdp2.bkatalog_imp;
+DROP TABLE qdp2.plan_omr;
+DROP TABLE qdp2.plan;
