@@ -185,30 +185,6 @@ CREATE UNIQUE INDEX qdp2_mv_eg_uidx
     (id)
     TABLESPACE pg_default;
 
-	WITH orings AS (
-		 SELECT st_exteriorring((st_dumprings((st_dump(omr.geom)).geom)).geom) AS geom
-		 FROM qdp2.omr
-		),oboundaries AS (
-         SELECT st_union(orings.geom) AS geom
-           FROM orings
-        ), opoly AS (
-         SELECT (st_dump(st_polygonize(oboundaries.geom))).geom AS geom
-           FROM oboundaries
-        )
-         SELECT row_number() OVER () AS id,
-		 	'delområde' AS namn, 
-		 	p.plan_uuid,
-		 	p.status,
-			p.publicerad,
-            op.geom
-           FROM opoly op,
-		   qdp2.plan_omr po,
-		   qdp2.plan p
-		   WHERE st_contains(po.geom, st_pointonsurface(op.geom)) AND po.plan_uuid = p.plan_uuid
-
-
-
-
 -- View: qdp2.mv_ega
 
 -- DROP MATERIALIZED VIEW IF EXISTS qdp2.mv_ega;

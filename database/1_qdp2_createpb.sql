@@ -848,7 +848,9 @@ INSERT INTO qdp2.kodlista (kategori, kod, beskrivning, sort, aktiv) VALUES
 	('lägesbestamningsmetod','okänd','Okänd',3,true),
 	('okänd','okänd','Okänd',1,true)
 ;
-
+INSERT INTO qdp2.kodlista (kategori, kod, beskrivning, sort, aktiv) VALUES
+	('datatyp','heltal','Heltal',3,true) --Kan vara bra för äldre planer där det behövs i äldre versioner av planbetsämmelsekatalogen
+;
 -- Table: qdp2.planinfo
 -- DROP TABLE qdp2.planinfo
 
