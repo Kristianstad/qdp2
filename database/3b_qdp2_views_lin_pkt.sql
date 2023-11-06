@@ -108,7 +108,7 @@ CREATE OR REPLACE RULE v_egenlin_ins AS
 	egenlin.avgransning,
 	'':: text AS symbolbeteckning_name,
     '':: text AS status,
-	NULL::boolean AS publicerad,
+	NULL::integer AS publicerad,
     '':: text AS katalogversion,
     egenlin.geom AS geom;
 
@@ -226,6 +226,6 @@ CREATE OR REPLACE RULE v_egenpkt_ins AS
 	NULL:: smallint AS index,
 	'':: text AS symbolbeteckning_name,
     '':: text AS status,
-	NULL::boolean AS publicerad,
+	NULL::integer AS publicerad,
     '':: text AS katalogversion,
     egenpkt.geom AS geom;

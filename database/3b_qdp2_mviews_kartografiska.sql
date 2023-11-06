@@ -40,7 +40,7 @@ TABLESPACE pg_default
     string_agg(concat(a.beteckning, chr(8320+a.index)::text), ' '::text ORDER BY a.huvudsaklig DESC, a.beteckning, a.index) AS beteckning,
     (array_agg(a.fargkod ORDER BY a.huvudsaklig DESC, a.beteckning))[1] AS fargkod,
 	max(a.status) AS status,
-	every(a.publicerad) AS publicerad,
+	max(a.publicerad) AS publicerad,
     p.geom::geometry(Polygon,3008) AS geom
    FROM polys p
      JOIN abest a ON st_contains(a.geom, st_pointonsurface(p.geom))
@@ -148,7 +148,7 @@ TABLESPACE pg_default
             (array_agg(a.symbolbeteckning_name ORDER BY a.symbolbeteckning_name))[1] AS symbol,
 		 	'eg' AS typ,
 		 	max(a.status) AS status,
-			every(a.publicerad) AS publicerad,
+			max(a.publicerad) AS publicerad,
             p.geom
            FROM epolys p
              JOIN ebest a ON st_contains(a.geom, st_pointonsurface(p.geom))
@@ -160,7 +160,7 @@ TABLESPACE pg_default
             (array_agg(a.symbolbeteckning_name ORDER BY a.symbolbeteckning_name))[1] AS symbol,
 		 	'eg_sek' AS typ,
 		 	max(a.status) AS status,
-			every(a.publicerad) AS publicerad,
+			max(a.publicerad) AS publicerad,
             p.geom
            FROM apolys p
              JOIN abest a ON st_contains(a.geom, st_pointonsurface(p.geom))

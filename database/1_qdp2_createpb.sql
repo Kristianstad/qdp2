@@ -66,7 +66,7 @@ CREATE TABLE qdp2.plan
 	akt text, 
 	katalogversion text,
 	anteckning text,
-	publicerad boolean,
+	publicerad integer,
 	CONSTRAINT qdp_plan_pkey PRIMARY KEY (plan_uuid)
 )
 WITH (

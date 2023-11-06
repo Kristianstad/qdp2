@@ -258,7 +258,7 @@ CREATE OR REPLACE RULE v_best_ins AS
     best.plan_uuid,
     ''::text AS status,
     ''::text AS katalogversion,
-	NULL::BOOLEAN AS publicerad,
+	NULL::integer AS publicerad,
     best.bestammelsetyp,
     best.anvandningsform, 
 	best.kategori, 
@@ -308,6 +308,7 @@ CREATE OR REPLACE VIEW qdp2.v_anv_best AS
 	m.motiv,
     x.huvudsaklig, --ej i spec
 	x.avgransning,
+	--'Avgränsad vertikalt ' || x.avgransning || ' till ' || coalesce( o.zmin, o.zmax) || ' meter över angivet nollplan' AS avgransning_text, --Avgränsning i höjdled
 	x.giltighetstid,
 	x.borjar_galla_efter,
     b.ursprunglig, --ursprunglig bestämmelseformulering
