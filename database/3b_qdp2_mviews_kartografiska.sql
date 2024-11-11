@@ -203,7 +203,8 @@ AS
            FROM oboundaries
         )
          SELECT row_number() OVER () AS id,
-		 	'delområde' AS namn, 
+		 	p.namn,
+			'delområde' AS delomr,
 		 	p.plan_uuid,
 		 	p.status,
 			p.publicerad,
