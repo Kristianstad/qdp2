@@ -418,6 +418,7 @@ ALTER TABLE qdp2.variabel
 GRANT ALL ON TABLE qdp2.variabel TO edit_geodata;
 GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE qdp2.variabel TO edit_plan;
 GRANT SELECT ON TABLE qdp2.variabel TO read_geodata;
+GRANT ALL ON SEQUENCE qdp2.variabel_id_seq TO edit_plan;
 COMMENT ON TABLE qdp2.variabel
   IS 'Variabler till bestämmelser';
   
@@ -683,6 +684,7 @@ ALTER TABLE qdp2.referens
     OWNER TO edit_geodata;
 GRANT ALL ON TABLE qdp2.referens TO edit_geodata;
 GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE qdp2.referens TO edit_plan;
+GRANT ALL ON SEQUENCE qdp2.referens_ref_id_seq TO edit_plan;
 GRANT SELECT ON TABLE qdp2.referens TO read_geodata;
 
 COMMENT ON TABLE qdp2.referens
