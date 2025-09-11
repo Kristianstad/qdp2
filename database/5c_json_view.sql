@@ -211,7 +211,7 @@ motiv AS (
 		'bbox', g.bbox,
 		'properties', jsonb_strip_nulls(jsonb_build_object(
 			'objektidentitet' , g.g_uuid,
-			'feature:typ', concat(lower(b.bestammelsetyp),'sbestämmelse'),
+			'feature:typ', CASE WHEN b.bestammelsetyp = 'Administrativ' THEN concat(lower(b.bestammelsetyp),' bestämmelse') ELSE concat(lower(b.bestammelsetyp),'sbestämmelse') END,
 			'detaljplan', b.plan_uuid, --Special vid tekniska anläggningar
 			'planbestammelsekatalogreferens', CASE WHEN b.kategori = 'Tekniska anläggningar' THEN '9b78a950-1bb2-4046-98cf-9efbd5868323' ELSE b.bk_ref END,
 			'bestammelseformulering', CASE WHEN b.kategori = 'Tekniska anläggningar' THEN 'Tekniska anläggningar' ELSE b.bform END,

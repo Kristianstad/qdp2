@@ -205,7 +205,7 @@ motiv AS (
 		'bbox', g.bbox,
 		'properties', jsonb_strip_nulls(jsonb_build_object(
 			'objektidentitet' , g.g_uuid,
-			'feature:typ', concat(lower(b.bestammelsetyp),'sbestämmelse'),
+			'feature:typ', CASE WHEN b.bestammelsetyp = 'Administrativ' THEN concat(lower(b.bestammelsetyp),' bestämmelse') ELSE concat(lower(b.bestammelsetyp),'sbestämmelse') END,
 			'detaljplan', b.plan_uuid, --Special vid tekniska anläggningar
 			'planbestammelsekatalogreferens', CASE WHEN b.kategori = 'Tekniska anläggningar' THEN '9b78a950-1bb2-4046-98cf-9efbd5868323' ELSE b.bk_ref END,
 			'bestammelseformulering', CASE WHEN b.kategori = 'Tekniska anläggningar' THEN 'Tekniska anläggningar' ELSE b.bform END,
@@ -281,5 +281,5 @@ LEFT JOIN kvalitet k ON p.kval_id = k.kval_id
 LEFT JOIN planbeskrivning pb ON p.plan_uuid = pb.plan_uuid 
 LEFT JOIN underlag u ON p.plan_uuid = u.plan_uuid 
 LEFT JOIN bestammelse bs ON p.plan_uuid = bs.plan_uuid 
---WHERE p.plan_uuid = 'a9e2e68d-6a7a-4045-80f0-56841335af06'--'42f54e09-f882-46ff-9806-bd7eeae2b44d'--'32113768-a40f-4d10-9a25-4e5e24756ca1'--''c2664c0a-decb-408e-aa21-19f081dee860'--'85a19575-bc9a-4603-9fa4-7d49b321f525'--'647c775c-82b8-4c3d-be0b-0d1f3ac3a70c'
+WHERE p.plan_uuid = 'e8d301e9-02a5-48d3-9033-b2c845fbdfac'--'42f54e09-f882-46ff-9806-bd7eeae2b44d'--'32113768-a40f-4d10-9a25-4e5e24756ca1'--''c2664c0a-decb-408e-aa21-19f081dee860'--'85a19575-bc9a-4603-9fa4-7d49b321f525'--'647c775c-82b8-4c3d-be0b-0d1f3ac3a70c'
 ;
