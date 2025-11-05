@@ -419,6 +419,7 @@ CREATE OR REPLACE VIEW qdp2.v_best_g AS
 		UNION
 		 SELECT e.best_uuid, st_collect(o.geom)
            FROM qdp2.egen_best e JOIN qdp2.omr o ON e.o_uuid = o.o_uuid
+		   JOIN qdp2.best b_1 ON e.best_uuid = b_1.best_uuid AND (NOT b_1.galler_all_anvandningsform OR b_1.galler_all_anvandningsform IS NULL)
           GROUP BY e.best_uuid 
 	   UNION
 	   	 SELECT DISTINCT b.best_uuid, st_collect(o.geom)--ST_ForceCurve(st_multi(st_union(o.geom))) --gav felaktiga geometrier ibland (curve?)
