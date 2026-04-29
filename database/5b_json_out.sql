@@ -215,7 +215,7 @@ motiv AS (
 			'giltighetstid', a.giltighetstid,
 			'borjarGallaEfter', a.borjar_galla_efter,
 			'vertikalAvgransning', xb.avgransning,
-			'kvalitetsbeskrivning', k.kvalitet,
+			'kvalitetsbeskrivning', COALESCE(k.kvalitet, k2.kvalitet), --Ta kvalitet från planen om bestämmelsen saknar
 			'anvandbarhet', b.anvandbarhet,
 			'anvandbarhetBeskrivning', b.anvandbarhet_beskrivning,
 			'bestammelsegeometri', g.g_json,
@@ -234,6 +234,8 @@ motiv AS (
 	LEFT JOIN motiv m ON g.g_uuid = m.g_uuid
 	LEFT JOIN bestammelsevarde bv ON b.best_uuid = bv.best_uuid 
 	LEFT JOIN kvalitet k ON b.kval_id = k.kval_id
+	LEFT JOIN qdp2.plan p ON b.plan_uuid = p.plan_uuid
+	LEFT JOIN kvalitet k2 ON p.kval_id = k2.kval_id
 	LEFT JOIN reglerar r ON g.g_uuid = r.g_uuid --b.best_uuid = r.best_uuid 
 	GROUP BY b.plan_uuid
 )
